@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile Form with Validation</title>
+</head>
+
+<body>
+
+    <h1>Profile Form</h1>
+
+    <form id="profileForm">
+
+        
+        <fieldset>
+            <legend>General Information</legend>
+
+            <table cellpadding="5">
+
+                <tr>
+                    <td>First Name</td>
+                    <td><input type="text" id="fname" placeholder="Enter first name"></td>
+                </tr>
+
+                <tr>
+                    <td>Last Name</td>
+                    <td><input type="text" id="lname" placeholder="Enter last name"></td>
+                </tr>
+
+                <tr>
+                    <td>Father's Name</td>
+                    <td><input type="text" id="father" placeholder="Enter father's name"></td>
+                </tr>
+
+                <tr>
+                    <td>Mother's Name</td>
+                    <td><input type="text" id="mother" placeholder="Enter mother's name"></td>
+                </tr>
+
+                <tr>
+                    <td>Date of Birth</td>
+                    <td><input type="date" id="dob"></td>
+                </tr>
+
+                <tr>
+                    <td>Blood Group</td>
+                    <td><input type="text" id="blood" placeholder="e.g., B+"></td>
+                </tr>
+
+                <tr>
+                    <td>Religion</td>
+                    <td><input type="text" id="religion"></td>
+                </tr>
+
+                <tr>
+                    <td>Nationality</td>
+                    <td><input type="text" id="nationality"></td>
+                </tr>
+
+            </table>
+        </fieldset>
+
+        <br>
+
+        
+        <fieldset>
+            <legend>Address Information</legend>
+
+            <table cellpadding="5">
+
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" id="email" placeholder="example@domain.com"></td>
+                </tr>
+
+                <tr>
+                    <td>Phone</td>
+                    <td><input type="text" id="phone" placeholder="+8801XXXXXXXXX"></td>
+                </tr>
+
+                <tr>
+                    <td>Website</td>
+                    <td><input type="text" id="website" placeholder="https://example.com"></td>
+                </tr>
+
+                <tr>
+                    <td>Present Address</td>
+                    <td><input type="text" id="present"></td>
+                </tr>
+
+                <tr>
+                    <td>Permanent Address</td>
+                    <td><input type="text" id="permanent"></td>
+                </tr>
+
+            </table>
+        </fieldset>
+
+        <br>
+
+        
+        <fieldset>
+            <legend>References</legend>
+
+            <table cellpadding="5">
+
+                <tr>
+                    <td>Ref 1 Name</td>
+                    <td><input type="text" id="ref1_name"></td>
+                </tr>
+
+                <tr>
+                    <td>Ref 1 Email</td>
+                    <td><input type="text" id="ref1_email"></td>
+                </tr>
+
+                <tr>
+                    <td>Ref 2 Name</td>
+                    <td><input type="text" id="ref2_name"></td>
+                </tr>
+
+                <tr>
+                    <td>Ref 2 Email</td>
+                    <td><input type="text" id="ref2_email"></td>
+                </tr>
+
+            </table>
+        </fieldset>
+
+        <br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    
+    <script>
+        document.getElementById("profileForm").addEventListener("submit", function(e) {
+
+            
+            let fname = document.getElementById("fname").value.trim();
+            let lname = document.getElementById("lname").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let blood = document.getElementById("blood").value.trim();
+            let website = document.getElementById("website").value.trim();
+
+            
+            if (fname === "" || lname === "") {
+                alert("First Name and Last Name cannot be empty.");
+                e.preventDefault();
+                return;
+            }
+
+            
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                e.preventDefault();
+                return;
+            }
+
+            
+            let phonePattern = /^\+8801[0-9]{9}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Phone number must be in the format +8801XXXXXXXXX");
+                e.preventDefault();
+                return;
+            }
+
+            
+            const validBlood = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
+            if (!validBlood.includes(blood.toUpperCase())) {
+                alert("Invalid blood group!");
+                e.preventDefault();
+                return;
+            }
+
+            
+            let urlPattern = /^https?:\/\/.+/;
+            if (!urlPattern.test(website)) {
+                alert("Enter a valid website URL starting with http:// or https://");
+                e.preventDefault();
+                return;
+            }
+
+            alert("Form submitted successfully!");
+        });
+    </script>
+
+</body>
+
+</html>
